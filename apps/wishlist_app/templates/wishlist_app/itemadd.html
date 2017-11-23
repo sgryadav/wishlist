@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Item Add</title>
+</head>
+<body>
+    <a href="/dashboard">Home</a>
+    <a href="/logout">Logout</a>
+    <h2>Create a New Wish List Item</h2>
+    <form action="/{{request.session.id}}/additem" method="post">
+        {% csrf_token %}
+        Item/Product<input type="text" name="itemtoadd">
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
