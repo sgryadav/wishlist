@@ -4,17 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wishlist_app/css/itemdisplaystyle.css' %}" media="screen" title="no title" charset="utf-8">
     <title>Item Display</title>
 </head>
 <body>
-    <a href="/dashboard">Home</a>
-    <a href="/logout">Logout</a>
-    <h2>{{item_name}}</h2>
-    <p>Users who added this product/item under their wish list: <br><br>
-        {% for user in userswhowantitem %}
-            {{user.name}}
-            <br>
-        {% endfor %}
-    </p>
+    <div class="background">
+        <div class="container">
+            <div class="nav">
+                <a href="/dashboard">Home</a>
+                <a href="/logout">Logout</a>
+            </div>
+            <h2>{{item_name}}</h2>
+            <p class="userlist">Users who want this: <br><br>
+                {% for user in userswhowantitem %}
+                    {{user.name}}
+                    <br>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
 </body>
 </html>

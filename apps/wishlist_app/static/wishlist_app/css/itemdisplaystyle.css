@@ -1,0 +1,26 @@
+.background{
+    background-image: url("https://taxiservicemauritius.com/wp-content/uploads/2016/11/ivory-off-white-paper-texture.jpg");
+    height: 1000px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2{
+    margin-top: 100px;
+    text-align: center;
+}
+
+.nav{
+    margin-top: 40px;
+    margin-left: 1000px;
+}
+
+.userlist{
+    text-align: center;
+}
+
+a{
+    margin-left: 7px;
+    font-size: 14px;
+}

@@ -4,62 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wishlist_app/css/dashstyle.css' %}" media="screen" title="no title" charset="utf-8">
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello, {{current_user.name}}!</h1>
-    <a href="/logout">Logout</a>
-    <h3>Your Wish List:</h3>
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Added by</th>
-            <th>Date Added</th>
-            <th>Action</th>
-        </tr>
-            {% if current_user_list %}
-                {% for item in current_user_list %}
-                <tr>
-                    <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
-                    <td>{{item.added_by.name}}</td>
-                    <td>{{item.created_at}}</td>
-                <td>
-                    {% if item.added_by.name == current_user.name %}
-                        <a href="/{{item.id}}/delete">Delete</a>
-                    {% else %}
-                        <a href="/{{item.id}}/remove">Remove from my Wishlist</a>
-                    {% endif %}
-                </td>
-                    {% endfor %}
-                </tr>
-            {% endif %}
-        </tr>
-    </table>
+    <div class="background">
+        <div class="container">
 
-    <h3>Other Users' Wish List</h3>
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Added By</th>
-            <th>Date Added</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            {% for item in items %}
-                {% if item not in current_user_list %}
-                    <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
-                    <td>{{item.added_by.name}}</td>
-                    <td>{{item.created_at}}</td>
-                    <td><a href="/{{item.id}}/addtowishlist">Add to my Wishlist</a></td>
-                {% endif %}
-            {% endfor %}
+            <h1>Hello {{current_user.name}}</h1>
+            <a class="logout" href="/logout">Logout</a>
+           
 
-        </tr>
-    </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Your Wish List:</h3>
+                    <table>
+                        <tr>
+                            <th>Item</th>
+                            <th>Added by</th>
+                            <th>Date Added</th>
+                            <th>Action</th>
+                        </tr>
+                            {% if current_user_list %}
+                                {% for item in current_user_list %}
+                                <tr>
+                                    <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+                                    <td>{{item.added_by.name}}</td>
+                                    <td>{{item.created_at}}</td>
+                                <td>
+                                    {% if item.added_by.name == current_user.name %}
+                                        <a href="/{{item.id}}/delete">Delete</a>
+                                    {% else %}
+                                        <a href="/{{item.id}}/remove">Remove from my Wishlist</a>
+                                    {% endif %}
+                                </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endif %}
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Other Users' Wish List</h3>
+                    <table>
+                        <tr>
+                            <th>Item</th>
+                            <th>Added By</th>
+                            <th>Date Added</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for item in items %}
+                        <tr>
+                            {% if item not in current_user_list %}
+                                <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+                                <td>{{item.added_by.name}}</td>
+                                <td>{{item.created_at}}</td>
+                                <td><a href="/{{item.id}}/addtowishlist">Add to my Wishlist</a></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
 
 
-
-    <br><br>
-    <a href="wish_items/create" method="post">Add Item</a>
+            <br><br>
+            <a href="wish_items/create" method="post">Add Item</a>
+        </div>
+    </div>
 </body>
 </html>

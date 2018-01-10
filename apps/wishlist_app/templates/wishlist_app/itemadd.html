@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wishlist_app/css/itemaddstyle.css' %}" media="screen" title="no title" charset="utf-8">
     <title>Item Add</title>
 </head>
 <body>
-    <a href="/dashboard">Home</a>
-    <a href="/logout">Logout</a>
-    <h2>Create a New Wish List Item</h2>
-    <form action="/{{request.session.id}}/additem" method="post">
-        {% csrf_token %}
-        Item/Product<input type="text" name="itemtoadd">
-        <input type="submit" value="Add">
-    </form>
+    <div class="background">
+        <div class="container">
+            <div class="nav">
+                <a href="/dashboard">Home</a>
+                <a href="/logout">Logout</a>
+            </div>
+            <h2>Create an Item</h2>
+            <form align="center" action="/{{request.session.id}}/additem" method="post">
+                {% csrf_token %}
+                Item/Product <input type="text" name="itemtoadd">
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
